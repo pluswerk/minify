@@ -27,7 +27,7 @@ use voku\helper\HtmlMin;
  * @author Stefan Lamm <stefan.lamm@pluswerk.ag>
  * @copyright 2019 Pluswerk AG
  * @license GPL, version 3
- * @package Pluswerk\PlusProject\Hook
+ * @package Pluswerk\PlusMinify\Hook
  */
 class HtmlMinifier implements MiddlewareInterface
 {
@@ -94,6 +94,6 @@ class HtmlMinifier implements MiddlewareInterface
 
     protected function isFeatureActive(string $feature): bool
     {
-        return isset($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['plus_minify'][$feature]) && $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['plus_minify'][$feature] === '1';
+        return isset($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['minify'][$feature]) && $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['minify'][$feature] === '1';
     }
 }
