@@ -1,0 +1,53 @@
+# cat=plus_minify; type=boolean; label=optimize html via "HtmlDomParser()"
+tx_plusminify_optimize_via_html_dom_parser = 1
+
+# cat=plus_minify; type=boolean; label=remove default HTML comments (depends on "HtmlDomParser(true)")
+tx_plusminify_remove_comments = 1
+
+# cat=plus_minify; type=boolean; label=sum-up extra whitespace from the Dom (depends on "doOptimizeViaHtmlDomParser(true)")
+tx_plusminify_sum_up_whitespace = 1
+
+# cat=plus_minify; type=boolean; label=remove whitespace around tags (depends on "doOptimizeViaHtmlDomParser(true)")
+tx_plusminify_remove_whitespace_around_tags = 1
+
+# cat=plus_minify; type=boolean; label=optimize html attributes (depends on "doOptimizeViaHtmlDomParser(true)")
+tx_plusminify_optimize_attributes = 1
+
+# cat=plus_minify; type=boolean; label=remove optional "http:"-prefix from attributes (depends on "doOptimizeAttributes(true)")
+tx_plusminify_remove_http_prefix_from_attributes = 1
+
+# cat=plus_minify; type=boolean; label=remove defaults (depends on "doOptimizeAttributes(true)" | disabled by default)
+tx_plusminify_remove_default_attributes = 1
+
+# cat=plus_minify; type=boolean; label=remove deprecated anchor-jump (depends on "doOptimizeAttributes(true)")
+tx_plusminify_remove_deprecated_anchor_name = 1
+
+# cat=plus_minify; type=boolean; label=remove deprecated charset-attribute - the browser will use the charset from the HTTP-Header, anyway (depends on "doOptimizeAttributes(true)")
+tx_plusminify_remove_deprecated_script_charset_attribute = 1
+
+# cat=plus_minify; type=boolean; label=remove deprecated script-mime-types (depends on "doOptimizeAttributes(true)")
+tx_plusminify_remove_deprecated_type_from_script_tag = 1
+
+# cat=plus_minify; type=boolean; label=remove "type=text/css" for css links (depends on "doOptimizeAttributes(true)")
+tx_plusminify_remove_deprecated_type_from_stylesheet_link = 1
+
+# cat=plus_minify; type=boolean; label=remove some empty attributes (depends on "doOptimizeAttributes(true)")
+tx_plusminify_remove_empty_attributes = 1
+
+# cat=plus_minify; type=boolean; label=remove 'value=""' from empty <input> (depends on "doOptimizeAttributes(true)")
+tx_plusminify_remove_value_from_empty_input = 1
+
+# cat=plus_minify; type=boolean; label=sort css-class-names, for better gzip results (depends on "doOptimizeAttributes(true)")
+tx_plusminify_sort_css_class_names = 1
+
+# cat=plus_minify; type=boolean; label=sort html-attributes, for better gzip results (depends on "doOptimizeAttributes(true)")
+tx_plusminify_sort_html_attributes = 1
+
+# cat=plus_minify; type=boolean; label=remove more (aggressive) spaces in the dom (disabled by default)
+tx_plusminify_remove_spaces_between_tags = 1
+
+# cat=plus_minify; type=boolean; label=remove quotes e.g. class="lall" => class=lall
+tx_plusminify_remove_omitted_quotes = 1
+
+# cat=plus_minify; type=boolean; label=remove ommitted html tags e.g. <p>lall</p> => <p>lall
+tx_plusminify_remove_omitted_html_tags = 1

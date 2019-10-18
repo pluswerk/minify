@@ -1,0 +1,19 @@
+{
+  "name": "pluswerk/minify",
+  "type": "typo3-cms-extension",
+  "description": "Pluswerk: Minify - Minifies your html",
+  "homepage": "https://www.pluswerk.ag",
+  "license": "GPL-2.0-or-later",
+  "support": {
+    "source": "https://bitbucket.org/andersundsehr/plus_minify"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pluswerk\\PlusMinify\\": "Classes/"
+    }
+  },
+  "require": {
+    "typo3/cms-core": ">=9.5",
+    "voku/html-min": "*"
+  }
+}
