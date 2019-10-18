@@ -13,7 +13,7 @@
 /** @noinspection PhpFullyQualifiedNameUsageInspection */
 return [
     'frontend' => [
-        'plus_minify/service/htmlminifier' => [
+        'minify/service/htmlminifier' => [
             'target' => \Pluswerk\PlusMinify\Hook\HtmlMinifier::class,
             'after' => [],
             'before' => [
