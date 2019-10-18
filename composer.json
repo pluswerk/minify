@@ -5,7 +5,7 @@
   "homepage": "https://www.pluswerk.ag",
   "license": "GPL-2.0-or-later",
   "support": {
-    "source": "https://bitbucket.org/andersundsehr/plus_minify"
+    "source": "https://www.pluswerk.ag"
   },
   "autoload": {
     "psr-4": {
