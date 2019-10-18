@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /***
  *
  * This file is part of an "Pluswerk AG" Extension for TYPO3 CMS.
@@ -27,7 +29,7 @@ use voku\helper\HtmlMin;
  * @author Stefan Lamm <stefan.lamm@pluswerk.ag>
  * @copyright 2019 Pluswerk AG
  * @license GPL, version 3
- * @package Pluswerk\PlusProject\Hook
+ * @package Pluswerk\PlusMinify\Hook
  */
 class HtmlMinifier implements MiddlewareInterface
 {
