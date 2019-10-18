@@ -26,7 +26,7 @@ use voku\helper\HtmlMin;
 /**
  * @author Stefan Lamm <stefan.lamm@pluswerk.ag>
  * @copyright 2019 Pluswerk AG
- * @license GPL, version 2
+ * @license GPL, version 3
  * @package Pluswerk\PlusProject\Hook
  */
 class HtmlMinifier implements MiddlewareInterface
