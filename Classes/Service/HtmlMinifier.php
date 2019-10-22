@@ -67,6 +67,7 @@ class HtmlMinifier implements MiddlewareInterface
             $htmlMin->doRemoveSpacesBetweenTags($this->isFeatureActive('remove_spaces_between_tags'));
             $htmlMin->doRemoveOmittedQuotes($this->isFeatureActive('remove_omitted_quotes'));
             $htmlMin->doRemoveOmittedHtmlTags($this->isFeatureActive('remove_omitted_html_tags'));
+            $originalHtml = $html;
 
             // Not nice but this is really hardcoded in the core.
             if ($this->isFeatureActive('remove_comments')) {
@@ -85,6 +86,10 @@ class HtmlMinifier implements MiddlewareInterface
                 }
             } else {
                 $html = $htmlMin->minify($html);
+            }
+
+            if (empty($html)) {
+                $html = $originalHtml;
             }
 
             $body = new Stream('php://temp', 'wb+');
