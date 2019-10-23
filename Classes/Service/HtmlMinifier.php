@@ -113,10 +113,10 @@ class HtmlMinifier implements MiddlewareInterface
 
             if (strpos($typo3Comment, 'TYPO3') !== false) {
                 return $typo3Comment;
-            } else {
-                $html = str_replace($typo3Comment, '', $html);
-                return $this->preserveTypo3Comment($html);
             }
+
+            $html = str_replace($typo3Comment, '', $html);
+            return $this->preserveTypo3Comment($html);
         }
 
         return '';
