@@ -2,7 +2,7 @@
 optimize_via_html_dom_parser = 1
 
 # cat=plus_minify; type=boolean; label=remove default HTML comments (depends on "HtmlDomParser(true)")
-remove_comments = 1
+remove_comments = 0
 
 # cat=plus_minify; type=boolean; label=sum-up extra whitespace from the Dom (depends on "doOptimizeViaHtmlDomParser(true)")
 sum_up_whitespace = 1
