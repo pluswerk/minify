@@ -71,11 +71,11 @@ class HtmlMinifier implements MiddlewareInterface
 
             // Not nice but this is really hardcoded in the core.
             if ($this->isFeatureActive('remove_comments')) {
-                $typo3CommentStart = strpos($html, '<!--');
-                $typo3CommentStop = strpos($html, '-->', $typo3CommentStart);
-                $typo3Comment = substr($html, $typo3CommentStart, $typo3CommentStop - $typo3CommentStart + 3);
-                $output = [];
+
+                $typo3Comment = $this->preserveTypo3Comment($html);
+
                 $html = $htmlMin->minify($html);
+                $output = [];
                 $languageMeta = preg_match_all('/<meta charset=[a-zA-Z0-9-_"]*>/', $html, $output);
                 if ($languageMeta) {
                     $insertAt = strpos($html, $output[0][0]) + strlen($output[0][0]);
@@ -102,5 +102,23 @@ class HtmlMinifier implements MiddlewareInterface
     protected function isFeatureActive(string $feature): bool
     {
         return isset($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['minify'][$feature]) && $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['minify'][$feature] === '1';
+    }
+
+    private function preserveTypo3Comment(string $html): string
+    {
+        $typo3CommentStart = strpos($html, '<!--');
+        if ($typo3CommentStart !== false) {
+            $typo3CommentStop = strpos($html, '-->', $typo3CommentStart);
+            $typo3Comment = substr($html, $typo3CommentStart, $typo3CommentStop - $typo3CommentStart + 3);
+
+            if (strpos($typo3Comment, 'TYPO3') !== false) {
+                return $typo3Comment;
+            }
+
+            $html = str_replace($typo3Comment, '', $html);
+            return $this->preserveTypo3Comment($html);
+        }
+
+        return '';
     }
 }
