@@ -15,8 +15,10 @@ return [
     'frontend' => [
         'minify/service/htmlminifier' => [
             'target' => \Pluswerk\PlusMinify\Hook\HtmlMinifier::class,
-            'after' => [],
+            'after' => [
+            ],
             'before' => [
+                'typo3/cms-adminpanel/renderer',
                 'typo3/cms-frontend/output-compression'
             ]
         ]

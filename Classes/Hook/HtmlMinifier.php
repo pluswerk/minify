@@ -47,8 +47,10 @@ class HtmlMinifier implements MiddlewareInterface
         if ($response instanceof Response
             && $GLOBALS['TSFE'] instanceof TypoScriptFrontendController
             && $GLOBALS['TSFE']->isOutputting()) {
+            $body = $response->getBody();
+            $body->rewind();
+            $html = $body->getContents();
 
-            $html = &$GLOBALS['TSFE']->content;
             $htmlMin = new HtmlMin();
             $htmlMin->doOptimizeViaHtmlDomParser($this->isFeatureActive('optimize_via_html_dom_parser'));
             $htmlMin->doSumUpWhitespace($this->isFeatureActive('sum_up_whitespace'));
@@ -67,13 +69,12 @@ class HtmlMinifier implements MiddlewareInterface
             $htmlMin->doRemoveSpacesBetweenTags($this->isFeatureActive('remove_spaces_between_tags'));
             $htmlMin->doRemoveOmittedQuotes($this->isFeatureActive('remove_omitted_quotes'));
             $htmlMin->doRemoveOmittedHtmlTags($this->isFeatureActive('remove_omitted_html_tags'));
+            $htmlMin->doRemoveComments($this->isFeatureActive('remove_comments'));
             $originalHtml = $html;
 
             // Not nice but this is really hardcoded in the core.
             if ($this->isFeatureActive('remove_comments')) {
-
                 $typo3Comment = $this->preserveTypo3Comment($html);
-
                 $html = $htmlMin->minify($html);
                 $output = [];
                 $languageMeta = preg_match_all('/<meta charset=[a-zA-Z0-9-_"]*>/', $html, $output);
@@ -81,7 +82,6 @@ class HtmlMinifier implements MiddlewareInterface
                     $insertAt = strpos($html, $output[0][0]) + strlen($output[0][0]);
                     $html = substr($html, 0, $insertAt) . $typo3Comment . substr($html, $insertAt);
                 } else {
-                    $htmlMin->doRemoveComments(false);
                     $html = $htmlMin->minify($html);
                 }
             } else {
