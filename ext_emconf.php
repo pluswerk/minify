@@ -11,11 +11,11 @@ $EM_CONF[$_EXTKEY] = [
     'internal' => '',
     'uploadfolder' => '0',
     'createDirs' => '',
-    'clearCacheOnLoad' => 0,
-    'version' => '1.1.2',
-    'constraints' =>[
+    'clearCacheOnLoad' => false,
+    'version' => \Composer\InstalledVersions::getPrettyVersion('pluswerk/minify'),
+    'constraints' => [
         'depends' => [
-            'typo3' => '10.99.99',
+            'typo3' => '10.4.0 - 11.99.99',
         ],
         'conflicts' => [],
         'suggests' => [],

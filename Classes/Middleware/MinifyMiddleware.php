@@ -31,6 +31,7 @@ class MinifyMiddleware implements MiddlewareInterface
             $html = $body->getContents();
 
             $minifyService = GeneralUtility::makeInstance(MinifyService::class);
+            assert($minifyService instanceof MinifyService);
             $html = $minifyService->minify($html);
             $body = new Stream('php://temp', 'wb+');
             $body->write($html);
@@ -38,5 +39,4 @@ class MinifyMiddleware implements MiddlewareInterface
         }
         return $response;
     }
-
 }
