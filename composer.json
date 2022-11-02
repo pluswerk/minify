@@ -1,19 +1,42 @@
 {
-  "name": "pluswerk/minify",
-  "type": "typo3-cms-extension",
-  "description": "Pluswerk: Minify - Minifies your html",
-  "homepage": "https://www.pluswerk.ag",
-  "license": "GPL-2.0-or-later",
-  "support": {
-    "source": "https://www.pluswerk.ag"
+  "name" : "pluswerk/minify",
+  "type" : "typo3-cms-extension",
+  "description" : "Pluswerk: Minify - Minifies your html",
+  "homepage" : "https://www.pluswerk.ag",
+  "license" : "GPL-2.0-or-later",
+  "support" : {
+    "source" : "https://github.com/pluswerk/minify"
   },
-  "autoload": {
-    "psr-4": {
-      "Pluswerk\\PlusMinify\\": "Classes/"
+  "autoload" : {
+    "psr-4" : {
+      "Pluswerk\\PlusMinify\\" : "Classes/"
     }
   },
-  "require": {
-    "typo3/cms-core": "^10.4",
-    "voku/html-min": "*"
+  "config": {
+    "allow-plugins": {
+      "typo3/cms-composer-installers": true,
+      "typo3/class-alias-loader": true,
+      "phpro/grumphp": true,
+      "pluswerk/grumphp-config": true
+    },
+    "sort-packages": true
+  },
+  "extra" : {
+    "typo3/cms" : {
+      "extension-key" : "minify"
+    },
+    "pluswerk/grumphp-config": {
+      "auto-setting": true
+    },
+    "grumphp": {
+      "config-default-path": "vendor/pluswerk/grumphp-config/grumphp.yml"
+    }
+  },
+  "require" : {
+    "php": "~7.4 || ~8.0 || ~8.1",
+    "composer-runtime-api": "^2",
+    "pluswerk/grumphp-config": "^5.0",
+    "typo3/cms-core": "^10.4 || ^11.5",
+    "voku/html-min": "^4"
   }
 }
