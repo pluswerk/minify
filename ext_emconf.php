@@ -1,5 +1,7 @@
 <?php
 
+use Composer\InstalledVersions;
+
 /** @var string $_EXTKEY */
 $EM_CONF[$_EXTKEY] = [
     'title' => '+Pluswerk: Minify',
@@ -8,14 +10,10 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Stefan Lamm',
     'author_email' => 'stefan.lamm@pluswerk.ag',
     'state' => 'stable',
-    'internal' => '',
-    'uploadfolder' => '0',
-    'createDirs' => '',
-    'clearCacheOnLoad' => false,
-    'version' => \Composer\InstalledVersions::getPrettyVersion('pluswerk/minify'),
+    'version' => InstalledVersions::getPrettyVersion('pluswerk/minify'),
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0 - 11.99.99',
+            'typo3' => '11.5.0 - 12.99.99',
         ],
         'conflicts' => [],
         'suggests' => [],

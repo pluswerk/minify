@@ -1,9 +1,11 @@
 <?php
 
+use Pluswerk\PlusMinify\Middleware\MinifyMiddleware;
+
 return [
     'frontend' => [
         'minify/service/htmlminifier' => [
-            'target' => \Pluswerk\PlusMinify\Middleware\MinifyMiddleware::class,
+            'target' => MinifyMiddleware::class,
             // in the request direction it is after these middlewares:
             // but in response direction it is before these middlewares:
             'after' => [
