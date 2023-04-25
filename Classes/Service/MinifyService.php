@@ -29,6 +29,7 @@ class MinifyService
         $htmlMin->doRemoveOmittedQuotes($this->isFeatureActive('remove_omitted_quotes'));
         $htmlMin->doRemoveOmittedHtmlTags($this->isFeatureActive('remove_omitted_html_tags'));
         $htmlMin->doRemoveComments($this->isFeatureActive('remove_comments'));
+
         $originalHtml = $html;
 
         // Not nice but this is really hardcoded in the core.
@@ -36,9 +37,9 @@ class MinifyService
             $typo3Comment = $this->preserveTypo3Comment($html);
             $html = $htmlMin->minify($html);
             $output = [];
-            $languageMeta = preg_match_all('/<meta charset=[a-zA-Z0-9-_"]*>/', $html, $output);
+            $languageMeta = preg_match_all('#<meta charset=[a-zA-Z0-9-_"]*>#', $html, $output);
             if ($languageMeta) {
-                $insertAt = strpos($html, $output[0][0]) + strlen($output[0][0]);
+                $insertAt = strpos($html, (string)$output[0][0]) + strlen($output[0][0]);
                 $html = substr($html, 0, $insertAt) . $typo3Comment . substr($html, $insertAt);
             } else {
                 $html = $htmlMin->minify($html);
@@ -48,8 +49,9 @@ class MinifyService
         }
 
         if (empty($html)) {
-            $html = $originalHtml;
+            return $originalHtml;
         }
+
         return $html;
     }
 
@@ -66,7 +68,7 @@ class MinifyService
             $typo3CommentStop = strpos($html, '-->', $typo3CommentStart);
             $typo3Comment = substr($html, $typo3CommentStart, $typo3CommentStop - $typo3CommentStart + 3);
 
-            if (strpos($typo3Comment, 'TYPO3') !== false) {
+            if (str_contains($typo3Comment, 'TYPO3')) {
                 return $typo3Comment;
             }
 

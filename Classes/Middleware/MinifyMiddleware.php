@@ -20,7 +20,7 @@ class MinifyMiddleware implements MiddlewareInterface
         //  minimize only html
         $response = $handler->handle($request);
         foreach ($response->getHeader('Content-Type') as $contentType) {
-            if (strpos($contentType, 'text/html') !== 0) {
+            if (!str_starts_with($contentType, 'text/html')) {
                 return $response;
             }
         }
@@ -37,6 +37,7 @@ class MinifyMiddleware implements MiddlewareInterface
             $body->write($html);
             $response = $response->withBody($body);
         }
+
         return $response;
     }
 }

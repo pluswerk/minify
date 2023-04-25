@@ -17,28 +17,25 @@
       "typo3/cms-composer-installers": true,
       "typo3/class-alias-loader": true,
       "phpro/grumphp": true,
-      "pluswerk/grumphp-config": true
+      "pluswerk/grumphp-config": true,
+      "phpstan/extension-installer": true
     },
     "sort-packages": true
   },
   "extra" : {
-    "typo3/cms" : {
-      "extension-key" : "minify"
-    },
-    "pluswerk/grumphp-config": {
-      "auto-setting": true
-    },
-    "grumphp": {
-      "config-default-path": "vendor/pluswerk/grumphp-config/grumphp.yml"
+    "typo3/cms": {
+      "extension-key": "minify"
     }
   },
   "require" : {
-    "php": "~7.4 || ~8.0 || ~8.1",
+    "php": "~8.0 || ~8.1 || ~8.2",
     "composer-runtime-api": "^2",
-    "typo3/cms-core": "^10.4 || ^11.5",
-    "voku/html-min": "^4"
+    "typo3/cms-core": "^11.5 || ^12.4",
+    "voku/html-min": "^4.5"
   },
   "require-dev": {
-    "pluswerk/grumphp-config": "^5"
+    "pluswerk/grumphp-config": "^6",
+    "saschaegerer/phpstan-typo3": "^1.8.2",
+    "ssch/typo3-rector": "^1.1.3"
   }
 }
