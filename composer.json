@@ -1,15 +1,27 @@
 {
-  "name" : "pluswerk/minify",
-  "type" : "typo3-cms-extension",
-  "description" : "Pluswerk: Minify - Minifies your html",
-  "homepage" : "https://www.pluswerk.ag",
-  "license" : "GPL-2.0-or-later",
-  "support" : {
-    "source" : "https://github.com/pluswerk/minify"
+  "name": "pluswerk/minify",
+  "description": "Pluswerk: Minify - Minifies your html",
+  "license": "GPL-2.0-or-later",
+  "type": "typo3-cms-extension",
+  "homepage": "https://www.pluswerk.ag",
+  "support": {
+    "source": "https://github.com/pluswerk/minify"
   },
-  "autoload" : {
-    "psr-4" : {
-      "Pluswerk\\PlusMinify\\" : "Classes/"
+  "require": {
+    "php": "^8.0",
+    "composer-runtime-api": "^2",
+    "typo3/cms-core": "^11.5 || ^12.4",
+    "voku/html-min": "^4.5"
+  },
+  "require-dev": {
+    "andersundsehr/ssi-include": "dev-main",
+    "pluswerk/grumphp-config": "^6",
+    "saschaegerer/phpstan-typo3": "^1.8.2",
+    "ssch/typo3-rector": "^1.1.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pluswerk\\PlusMinify\\": "Classes/"
     }
   },
   "config": {
@@ -18,24 +30,14 @@
       "typo3/class-alias-loader": true,
       "phpro/grumphp": true,
       "pluswerk/grumphp-config": true,
-      "phpstan/extension-installer": true
+      "phpstan/extension-installer": true,
+      "ergebnis/composer-normalize": true
     },
     "sort-packages": true
   },
-  "extra" : {
+  "extra": {
     "typo3/cms": {
       "extension-key": "minify"
     }
-  },
-  "require" : {
-    "php": "~8.0 || ~8.1 || ~8.2",
-    "composer-runtime-api": "^2",
-    "typo3/cms-core": "^11.5 || ^12.4",
-    "voku/html-min": "^4.5"
-  },
-  "require-dev": {
-    "pluswerk/grumphp-config": "^6",
-    "saschaegerer/phpstan-typo3": "^1.8.2",
-    "ssch/typo3-rector": "^1.1.3"
   }
 }

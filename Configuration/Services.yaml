@@ -7,3 +7,9 @@ services:
   Pluswerk\PlusMinify\Service\:
     resource: '../Classes/Service/*'
     public: true
+
+  Pluswerk\PlusMinify\EventListener\RenderedEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'Pluswerk\PlusMinify\EventListener\RenderedEventListener'
+        event: AUS\SsiInclude\Event\RenderedEvent
