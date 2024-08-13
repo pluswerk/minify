@@ -5,7 +5,6 @@ declare(strict_types=1);
 use PLUS\GrumPHPConfig\RectorSettings;
 use Rector\Config\RectorConfig;
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
-use Rector\Privatization\Rector\Class_\FinalizeClassesWithoutChildrenRector;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->parallel();
@@ -22,7 +21,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->sets(
         [
             ...RectorSettings::sets(true),
-            ...RectorSettings::setsTypo3(false),
+            ...RectorSettings::setsTypo3(true),
         ]
     );
 
@@ -32,7 +31,6 @@ return static function (RectorConfig $rectorConfig): void {
         [
             ...RectorSettings::skip(),
             ...RectorSettings::skipTypo3(),
-            FinalizeClassesWithoutChildrenRector::class,
             /**
              * rector should not touch these files
              */

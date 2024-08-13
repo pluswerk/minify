@@ -48,11 +48,11 @@ class MinifyService
             $html = $htmlMin->minify($html);
         }
 
-        if (empty($html)) {
+        if (!$html) {
             return $originalHtml;
         }
 
-        return $html;
+        return $html . (str_contains($html, '</body>') ? '' : '</body>');
     }
 
 

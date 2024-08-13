@@ -11,11 +11,13 @@ return [
             'after' => [
                 'typo3/cms-frontend/output-compression',
                 'typo3/cms-frontend/content-length-headers',
+                'typo3/cms-adminpanel/renderer', // after the adminpanel render, this takes some time to process and is not neccesarly needed
             ],
             // in the request direction it is before these middlewares:
             // but in response direction it is after these middlewares:
             'before' => [
-                'typo3/cms-adminpanel/renderer',
+                'typo3/cms-adminpanel/data-persister',
+                'typo3/cms-frontend/csp-headers',
             ]
         ]
     ]
