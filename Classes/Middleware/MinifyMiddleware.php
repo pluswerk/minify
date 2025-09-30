@@ -11,10 +11,13 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Http\Stream;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class MinifyMiddleware implements MiddlewareInterface
 {
+    public function __construct(private readonly MinifyService $minifyService)
+    {
+    }
+
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         //  minimize only html
@@ -30,9 +33,7 @@ class MinifyMiddleware implements MiddlewareInterface
             $body->rewind();
             $html = $body->getContents();
 
-            $minifyService = GeneralUtility::makeInstance(MinifyService::class);
-            assert($minifyService instanceof MinifyService);
-            $html = $minifyService->minify($html);
+            $html = $this->minifyService->minify($html);
             $body = new Stream('php://temp', 'wb+');
             $body->write($html);
             $response = $response->withBody($body);

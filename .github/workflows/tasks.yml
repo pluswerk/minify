@@ -9,15 +9,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '8.1', '8.2', '8.3' ]
-        typo3: [ '11', '12' ]
+        php: [ '8.1', '8.2', '8.3', '8.4' ]
+        typo3: [ '11', '12', '13' ]
+        exclude:
+          - php: '8.1'
+            typo3: '13'
+          - php: '8.4'
+            typo3: '11'
     steps:
       - name: Setup PHP with PECL extension
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v5
+      - uses: actions/cache@v3
         with:
           path: ~/.composer/cache/files
           key: ${{ runner.os }}-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -26,4 +31,3 @@ jobs:
       - run: composer require typo3/minimal="^${{ matrix.typo3 }}" --dev
       - run: composer install --no-interaction --no-progress
       - run: ./vendor/bin/grumphp run --ansi
-
