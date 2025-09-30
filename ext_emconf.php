@@ -13,7 +13,7 @@ $EM_CONF[$_EXTKEY] = [
     'version' => InstalledVersions::getPrettyVersion('pluswerk/minify'),
     'constraints' => [
         'depends' => [
-            'typo3' => '11.5.0 - 12.99.99',
+            'typo3' => '11.5.0 - 13.99.99',
         ],
         'conflicts' => [],
         'suggests' => [],

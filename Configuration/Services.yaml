@@ -4,10 +4,6 @@ services:
     autoconfigure: true
     public: false
 
-  Pluswerk\PlusMinify\Service\:
-    resource: '../Classes/Service/*'
-    public: true
-
   Pluswerk\PlusMinify\EventListener\RenderedEventListener:
     tags:
       - name: event.listener

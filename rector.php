@@ -14,14 +14,14 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->cacheDirectory('./var/cache/rector');
 
     $rectorConfig->paths(
-        array_filter(explode("\n", (string)shell_exec("git ls-files | xargs ls -d 2>/dev/null | grep '\.php$'")))
+        array_filter(explode("\n", (string)shell_exec("git ls-files | xargs ls -d 2>/dev/null | grep -E '\.(php)$'")))
     );
 
     // define sets of rules
     $rectorConfig->sets(
         [
             ...RectorSettings::sets(true),
-            ...RectorSettings::setsTypo3(true),
+            ...RectorSettings::setsTypo3(false),
         ]
     );
 
@@ -31,6 +31,7 @@ return static function (RectorConfig $rectorConfig): void {
         [
             ...RectorSettings::skip(),
             ...RectorSettings::skipTypo3(),
+
             /**
              * rector should not touch these files
              */

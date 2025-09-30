@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Pluswerk\PlusMinify\Service;
 
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use voku\helper\HtmlMin;
 
+#[Autoconfigure(public: true)]
 class MinifyService
 {
     public function minify(string $html): string
@@ -39,7 +41,7 @@ class MinifyService
             $output = [];
             $languageMeta = preg_match_all('#<meta charset=[a-zA-Z0-9-_"]*>#', $html, $output);
             if ($languageMeta) {
-                $insertAt = strpos($html, (string)$output[0][0]) + strlen($output[0][0]);
+                $insertAt = strpos($html, $output[0][0]) + strlen($output[0][0]);
                 $html = substr($html, 0, $insertAt) . $typo3Comment . substr($html, $insertAt);
             } else {
                 $html = $htmlMin->minify($html);
