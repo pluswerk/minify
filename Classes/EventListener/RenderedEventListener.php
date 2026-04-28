@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pluswerk\PlusMinify\EventListener;
 
 use AUS\SsiInclude\Event\RenderedEvent;

@@ -9,25 +9,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '8.1', '8.2', '8.3', '8.4' ]
-        typo3: [ '11', '12', '13' ]
-        exclude:
-          - php: '8.1'
-            typo3: '13'
-          - php: '8.4'
-            typo3: '11'
+        php: [ '82', '83', '84' ]
+        typo3: [ '12', '13' ]
+    container:
+      image: ghcr.io/typo3/core-testing-php${{ matrix.php }}:latest
     steps:
-      - name: Setup PHP with PECL extension
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
+      - name: Install dependencies
+        run: apk add --no-cache nodejs
       - uses: actions/checkout@v5
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ~/.composer/cache/files
           key: ${{ runner.os }}-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.php }}-composer-
-      - run: composer require typo3/minimal="^${{ matrix.typo3 }}" --dev
-      - run: composer install --no-interaction --no-progress
-      - run: ./vendor/bin/grumphp run --ansi
+      - run: composer switchto${{ matrix.typo3 }}
+      - run: ./vendor/bin/grumphp run --ansi --no-interaction
+      - run: composer test
