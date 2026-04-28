@@ -3,3 +3,4 @@ vendor
 public
 composer.lock
 var/
+.phpunit.result.cache

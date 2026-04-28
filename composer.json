@@ -8,20 +8,26 @@
     "source": "https://github.com/pluswerk/minify"
   },
   "require": {
-    "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+    "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
     "composer-runtime-api": "^2",
-    "typo3/cms-core": "^11.5 || ^12.4 || ^13.4",
-    "voku/html-min": "^4.5.1"
+    "typo3/cms-core": "^12.4 || ^13.4",
+    "voku/html-min": "^5.0.0"
   },
   "require-dev": {
     "andersundsehr/ssi-include": "^1.1.0 || ^2.2.0",
     "pluswerk/grumphp-config": "^7 || ^10",
-    "saschaegerer/phpstan-typo3": "^1.10.0 || ^2.1.1",
-    "ssch/typo3-rector": "^2.5.0 || ^3.6.2"
+    "saschaegerer/phpstan-typo3": "^1.10.2 || ^2.1.1",
+    "ssch/typo3-rector": "^2.15.2 || ^3.14.1",
+    "typo3/testing-framework": "^8.2 || ^9.4"
   },
   "autoload": {
     "psr-4": {
       "Pluswerk\\PlusMinify\\": "Classes/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Pluswerk\\PlusMinify\\Tests\\": "Tests/"
     }
   },
   "config": {
@@ -39,5 +45,16 @@
     "typo3/cms": {
       "extension-key": "minify"
     }
+  },
+  "scripts": {
+    "switchto12": [
+      "rm -rf composer.lock vendor/composer/installed.json",
+      "@composer req typo3/minimal:^12 --dev --no-interaction --no-progress"
+    ],
+    "switchto13": [
+      "rm -rf composer.lock vendor/composer/installed.json",
+      "@composer req typo3/minimal:^13 --dev --no-interaction --no-progress"
+    ],
+    "test": "@php ./vendor/bin/phpunit --testdox --stderr"
   }
 }
