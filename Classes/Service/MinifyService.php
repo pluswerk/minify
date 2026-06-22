@@ -12,6 +12,10 @@ class MinifyService
 {
     public function minify(string $html): string
     {
+        if ($this->isFeatureActive('disabled')) {
+            return $html;
+        }
+
         $htmlMin = new HtmlMin();
         $htmlMin->doOptimizeViaHtmlDomParser($this->isFeatureActive('optimize_via_html_dom_parser'));
         $htmlMin->doSumUpWhitespace($this->isFeatureActive('sum_up_whitespace'));
