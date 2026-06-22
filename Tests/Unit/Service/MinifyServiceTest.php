@@ -111,6 +111,26 @@ class MinifyServiceTest extends TestCase
     }
 
     // -------------------------------------------------------------------------
+    // Master switch — disabled
+    // -------------------------------------------------------------------------
+
+    #[Test]
+    public function minifyReturnsHtmlUntouchedWhenDisabled(): void
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['minify']['disabled'] = '1';
+        // Features that would otherwise transform the output are on, to prove
+        // the disabled switch short-circuits before any minification happens.
+        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['minify']['optimize_via_html_dom_parser'] = '1';
+        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['minify']['remove_comments'] = '1';
+
+        $html = '<html><head><meta charset="utf-8"><!-- drop me --></head><body>   <p>Hello</p>   </body></html>';
+
+        $result = $this->subject->minify($html);
+
+        self::assertSame($html, $result);
+    }
+
+    // -------------------------------------------------------------------------
     // Output integrity
     // -------------------------------------------------------------------------
 

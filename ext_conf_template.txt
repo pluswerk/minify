@@ -1,3 +1,6 @@
+# cat=plus_minify; type=boolean; label=disable minification entirely (e.g. set to 1 in Development via AdditionalConfiguration.php)
+disabled = 0
+
 # cat=plus_minify; type=boolean; label=optimize html via "HtmlDomParser()"
 optimize_via_html_dom_parser = 1
 
