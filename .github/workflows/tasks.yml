@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         php: [ '82', '83', '84' ]
-        typo3: [ '12', '13' ]
+        typo3: [ '12', '13', '14' ]
     container:
       image: ghcr.io/typo3/core-testing-php${{ matrix.php }}:latest
     steps:

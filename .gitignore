@@ -3,4 +3,5 @@ vendor
 public
 composer.lock
 var/
+typo3temp/
 .phpunit.result.cache

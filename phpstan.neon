@@ -5,3 +5,8 @@ includes:
 parameters:
   level: 8
   reportUnmatchedIgnoredErrors: false
+  ignoreErrors:
+    # ssi-include has no TYPO3 v14 release
+    -
+      identifier: class.notFound
+      path: Classes/EventListener/RenderedEventListener.php

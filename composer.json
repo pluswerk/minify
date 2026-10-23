@@ -10,13 +10,13 @@
   "require": {
     "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
     "composer-runtime-api": "^2",
-    "typo3/cms-core": "^12.4 || ^13.4",
+    "typo3/cms-core": "^12.4 || ^13.4 || ^14.3",
     "voku/html-min": "^5.0.0"
   },
   "require-dev": {
     "andersundsehr/ssi-include": "^1.1.0 || ^2.2.0",
     "pluswerk/grumphp-config": "^7 || ^10",
-    "saschaegerer/phpstan-typo3": "^1.10.2 || ^2.1.1",
+    "saschaegerer/phpstan-typo3": "^1.10.2 || ^2.1.1 || ^3.0",
     "ssch/typo3-rector": "^2.15.2 || ^3.14.1",
     "typo3/testing-framework": "^8.2 || ^9.4"
   },
@@ -54,6 +54,11 @@
     "switchto13": [
       "rm -rf composer.lock vendor/composer/installed.json",
       "@composer req typo3/minimal:^13 --dev --no-interaction --no-progress"
+    ],
+    "switchto14": [
+      "rm -rf composer.lock vendor/composer/installed.json",
+      "@composer remove andersundsehr/ssi-include --dev --no-update",
+      "@composer req typo3/minimal:^14 --dev --no-interaction --no-progress"
     ],
     "test": "@php ./vendor/bin/phpunit --testdox --stderr"
   }
